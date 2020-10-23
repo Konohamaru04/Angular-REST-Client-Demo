@@ -1,0 +1,50 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-sm">
+            <br><br><br>
+            <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)" novalidate>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">User Name</label>
+                    <input ngModel name="username" #username class="form-control" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Enter GitHub UserName">
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary" (click)="username.value = ''">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm">
+
+            <div [hidden]="!submit">
+                <div class="card text-center" style="width: 18rem;">
+                    <img class="card-img-top" src="{{avatarUrl}}" alt="Card image cap">
+                    <div class="card-body">
+                        <h5 class="card-title card-header">{{login}}</h5>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Name : {{name}}</li>
+                            <li class="list-group-item">Company : {{company}}</li>
+                            <li class="list-group-item">Blog : <a href="{{blog}}">{{blog}}</a></li>
+                            <li class="list-group-item">Followers : {{followers}}</li>
+                            <li class="list-group-item">Following : {{following}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm">
+            <div [hidden]="!submit">
+                <div *ngFor="let data of repos">
+                    <div class="card">
+                        <h5 class="card-header">{{data.name}}</h5>
+                        <div class="card-body">
+                            <h5 class="card-title">{{data.full_name}}</h5>
+                            <a href="{{data.html_url}}" class="btn btn-primary" target="_blank">Visit page</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
